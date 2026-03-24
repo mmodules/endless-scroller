@@ -3,29 +3,33 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody rb;
-    public float speed = 5f;
+    public GameObject background;
+    public float horizontalSpeed = 5f;
+    public float verticalSpeed = 3f;
 
     // Update is called once per frame
     void Update()
     {
+        transform.Translate(Vector3.up * verticalSpeed * Time.deltaTime);
+        background.transform.Translate(Vector3.up * verticalSpeed * Time.deltaTime);
+        
         if (Keyboard.current.spaceKey.isPressed)
         {
-            speed = 10f;
+            horizontalSpeed = 10f;
         }
         else
         {
-            speed = 5f;
+            horizontalSpeed = 5f;
         }
         
         if (Keyboard.current.aKey.isPressed)
         {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
+            transform.Translate(Vector3.left * horizontalSpeed * Time.deltaTime);
         }
 
         if (Keyboard.current.dKey.isPressed)
         {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            transform.Translate(Vector3.right * horizontalSpeed * Time.deltaTime);
         }
     }
 }
