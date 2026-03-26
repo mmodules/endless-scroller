@@ -23,29 +23,30 @@ public class LevelGenerator : MonoBehaviour
 
     void Update()
     {
-        if (activeSegments.Count > 0)
+        if (player != null)
         {
-            if (player.position.y > lastSegment.endPoint.position.y - 20f)
+            if (activeSegments.Count > 0)
             {
-                SpawnSegment();
-            
-                if (activeSegments.Count > 4)
+                if (player.position.y > lastSegment.endPoint.position.y - 20f)
                 {
-                    Destroy(activeSegments.Dequeue().gameObject);
+                    SpawnSegment();
+
+                    if (activeSegments.Count > 4)
+                    {
+                        Destroy(activeSegments.Dequeue().gameObject);
+                    }
                 }
             }
+            else
+            {
+                SpawnSegment();
+            }
         }
-        else
-        {
-            SpawnSegment();
-        }
-
     }
 
     void SpawnSegment()
     {
         int random = Random.Range(0, segmentPrefabs.Count);
-        Debug.Log(segmentPrefabs.Count);
         LevelSegment prefab = segmentPrefabs[random];
 
         LevelSegment newSegment = Instantiate(prefab);
