@@ -31,7 +31,7 @@ public class LevelGenerator : MonoBehaviour
                 {
                     SpawnSegment();
 
-                    if (activeSegments.Count > 4)
+                    if (activeSegments.Count > 3)
                     {
                         Destroy(activeSegments.Dequeue().gameObject);
                     }
