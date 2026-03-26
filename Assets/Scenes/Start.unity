@@ -761,6 +761,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1638462497}
+  - component: {fileID: 1638462498}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -783,6 +784,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1638462498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638462496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3b6d311edb7df34b80638cb43bd3bb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Score
+  player: {fileID: 1497200699}
+  scoreText: {fileID: 395850678}
+  score: 0
+  timeBetweenIncrements: 0.5
 --- !u!1 &1694188372
 GameObject:
   m_ObjectHideFlags: 0

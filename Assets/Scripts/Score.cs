@@ -11,26 +11,17 @@ public class Score : MonoBehaviour
     public float timeBetweenIncrements = 0.4f;
     private float timePassed = 0f;
         
-    void Start()
+    void Update()
     {
-        while (player != null)
+        if (player != null)
         {
             timePassed += Time.deltaTime;
-            if(timePassed >= timeBetweenIncrements)
+            if (timePassed >= timeBetweenIncrements)
             {
-                if (player != null)
-                {
-                    score += 1;
-                    scoreText.text = score.ToString();
-                    timePassed = 0f;
-                }
-                else
-                {
-                    break;
-                }
-                
-            } 
-            
+                score += 1;
+                scoreText.text = score.ToString();
+                timePassed = 0f;
+            }
         }
     }
 }
