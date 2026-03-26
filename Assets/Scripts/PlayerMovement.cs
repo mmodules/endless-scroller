@@ -1,9 +1,9 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject background;
     public Rigidbody2D rb;
     public float horizontalSpeed = 5f;
     public float verticalSpeed = 3f;
@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.linearVelocity = new Vector2(0, verticalSpeed * Time.deltaTime);
+        rb.linearVelocityX = 0;
         
         if (Keyboard.current.spaceKey.isPressed)
         {
@@ -22,23 +22,30 @@ public class PlayerMovement : MonoBehaviour
             horizontalSpeed = 5f;
         }
         
-        Vector2 velocity = rb.linearVelocity;
-        
+        MouseControls();
+        rb.linearVelocityY = verticalSpeed;
+    }
+
+    private void KeyboardControls()
+    {
         if (Keyboard.current.aKey.isPressed)
         {
             //transform.Translate(Vector3.left * horizontalSpeed * Time.deltaTime);
-            velocity.x = -1 * horizontalSpeed;
+            rb.linearVelocityX = -1 * horizontalSpeed;
         }
 
         if (Keyboard.current.dKey.isPressed)
         {
             //transform.Translate(Vector3.right * horizontalSpeed * Time.deltaTime);
-            velocity.x = 1 * horizontalSpeed;
+            rb.linearVelocityX = 1 * horizontalSpeed;
         }
+    }
+
+    private void MouseControls()
+    {
+        Vector2 screenPos = Mouse.current.position.ReadValue(); // Screen position
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         
-        
-        
-        velocity.y = verticalSpeed;
-        rb.linearVelocity = velocity;
+        rb.MovePosition(new Vector2(worldPos.x, rb.position.y + verticalSpeed * Time.fixedDeltaTime));
     }
 }
