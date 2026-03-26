@@ -304,6 +304,7 @@ MonoBehaviour:
   - {fileID: 5152110225625581829, guid: f8a60c2b63723a041b70a1d8193c0e81, type: 3}
   - {fileID: 8690535065890084239, guid: a2c9a7224ae7b294798af262dfd94f7a, type: 3}
   - {fileID: 3838880249818985447, guid: 5130c6cdac3660541a467c519e4a340d, type: 3}
+  - {fileID: 3838880249818985447, guid: 2126b48c3e7d4994093f7e0cf4ccffdc, type: 3}
   player: {fileID: 1497200701}
   segmentsAhead: 6
 --- !u!4 &667348791
