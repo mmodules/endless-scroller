@@ -13,6 +13,12 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.linearVelocityX = 0;
         
+        MouseControls();
+        rb.linearVelocityY = verticalSpeed;
+    }
+
+    private void KeyboardControls()
+    {
         if (Keyboard.current.spaceKey.isPressed)
         {
             horizontalSpeed = 10f;
@@ -22,12 +28,6 @@ public class PlayerMovement : MonoBehaviour
             horizontalSpeed = 5f;
         }
         
-        MouseControls();
-        rb.linearVelocityY = verticalSpeed;
-    }
-
-    private void KeyboardControls()
-    {
         if (Keyboard.current.aKey.isPressed)
         {
             //transform.Translate(Vector3.left * horizontalSpeed * Time.deltaTime);
