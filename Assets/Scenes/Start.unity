@@ -443,11 +443,13 @@ MonoBehaviour:
   - {fileID: 5152110225625581829, guid: 8c35e3c4527d01a448958e7a037bec11, type: 3}
   - {fileID: 5152110225625581829, guid: 03d7e974ab84f0347b08dcb9f2f86628, type: 3}
   - {fileID: 5152110225625581829, guid: 032508bf51945da469e42f34ed2e92f0, type: 3}
+  - {fileID: 5152110225625581829, guid: 1cd5aba2af911fe4ca169bdab5587abe, type: 3}
   - {fileID: 3895810377280649246, guid: 7e365c889c8bf9a4f9e495244882f35a, type: 3}
   - {fileID: 3838880249818985447, guid: 5130c6cdac3660541a467c519e4a340d, type: 3}
   - {fileID: 3838880249818985447, guid: 2126b48c3e7d4994093f7e0cf4ccffdc, type: 3}
   - {fileID: 3838880249818985447, guid: fbe6208d0e49ede419e079636261b999, type: 3}
   - {fileID: 3838880249818985447, guid: 29a1b8f6c55e6a54e848cb39cb56a1e5, type: 3}
+  - {fileID: 3838880249818985447, guid: cbcbadefbde778d42a623c73773ad46a, type: 3}
   player: {fileID: 1497200701}
   segmentsAhead: 6
 --- !u!4 &667348791
@@ -701,7 +703,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffbd2a2cc5b1cd488d4e7f24fc99b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  background: {fileID: 1694188372}
   rb: {fileID: 1497200702}
   horizontalSpeed: 5
   verticalSpeed: 3
