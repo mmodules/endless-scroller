@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.linearVelocityX = 0;
         
-        MouseControls();
+        KeyboardControls();
         rb.linearVelocityY = verticalSpeed;
     }
 
