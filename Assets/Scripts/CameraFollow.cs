@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ public class CameraFollow : MonoBehaviour
     {
         if (player != null)
         {
+            Debug.Log(transform.position);
             transform.position = new Vector3(0f, player.position.y + yOffset, transform.position.z);
         }
     }

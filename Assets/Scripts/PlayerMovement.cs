@@ -1,17 +1,23 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public float horizontalSpeed = 5f;
+    public float horizontalSpeed = 0.4f;
     public float verticalSpeed = 3f;
+
+    private float localSpeed = 5f;
+    private float timeElapsed;
+    //private float lastUpdateTime;
+    private float speedupInterval = 0.05f;
+    private bool incrementSpeed = true;
 
     // Update is called once per frame
     void Update()
     {
-        rb.linearVelocityX = 0;
         
         KeyboardControls();
         rb.linearVelocityY = verticalSpeed;
@@ -21,23 +27,39 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Keyboard.current.spaceKey.isPressed)
         {
-            horizontalSpeed = 10f;
+            localSpeed = horizontalSpeed * 2;
         }
         else
         {
-            horizontalSpeed = 5f;
+            localSpeed = horizontalSpeed;
         }
         
         if (Keyboard.current.aKey.isPressed)
         {
-            //transform.Translate(Vector3.left * horizontalSpeed * Time.deltaTime);
-            rb.linearVelocityX = -1 * horizontalSpeed;
+            if (incrementSpeed) {rb.linearVelocityX += Math.Clamp(-1 * localSpeed, -5, 5);}
+            incrementSpeed = false;
+            UpdateTime();
+            return;
         }
 
         if (Keyboard.current.dKey.isPressed)
         {
-            //transform.Translate(Vector3.right * horizontalSpeed * Time.deltaTime);
-            rb.linearVelocityX = 1 * horizontalSpeed;
+            if (incrementSpeed) {rb.linearVelocityX += Math.Clamp(1 * localSpeed, -5, 5);}
+            incrementSpeed = false;
+            UpdateTime();
+            return;
+        }
+        
+        rb.linearVelocityX = 0;
+    }
+
+    private void UpdateTime()
+    {
+        timeElapsed += Time.deltaTime;
+        if (timeElapsed >= speedupInterval)
+        {
+            timeElapsed = 0f;
+            incrementSpeed = true;
         }
     }
 

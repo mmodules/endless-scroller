@@ -27,7 +27,6 @@ public class CameraShake2D : MonoBehaviour
         else
         {
             shakeDuration = 0f;
-            transform.localPosition = originalPosition;
         }
     }
 

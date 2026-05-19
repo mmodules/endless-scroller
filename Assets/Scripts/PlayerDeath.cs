@@ -11,7 +11,7 @@ public class PlayerDeath : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Wall"))
         {
-            mainCamera.GetComponent<CameraShake2D>().Shake(1f, 0.6f);
+            mainCamera.GetComponent<CameraShake2D>().Shake(1f, 0.3f);
            
             Instantiate(explosionObject, transform.position, transform.rotation);
             Destroy(gameObject);
