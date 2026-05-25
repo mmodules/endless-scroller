@@ -9,7 +9,8 @@ public class PlayerDeath : MonoBehaviour
     public Camera mainCamera;
     public GameObject explosionObject;
     public GameObject scoreObject;
-    
+    [SerializeField] private AudioSource[] audioSources;
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Wall"))
@@ -21,15 +22,20 @@ public class PlayerDeath : MonoBehaviour
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<Collider2D>().enabled = false;
             GetComponent<PlayerMovement>().enabled = false;
+            
+            audioSources[1].Play();
 
             StartCoroutine(Wait());
+        }
+        else
+        {
+            audioSources[0].Play();
         }
     }
     
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(2);
-        Debug.Log("hello");
         SceneManager.LoadScene("Game Over");
     }
 }
