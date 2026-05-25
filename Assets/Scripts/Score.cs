@@ -4,24 +4,38 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
+    public static int highScore;
+    public static int score;
+    
     public GameObject player;
     public TMP_Text scoreText;
+    public TMP_Text highscoreText;
     
-    public int score = 0;
-    public float timeBetweenIncrements = 0.4f;
-    private float timePassed = 0f;
+    public float timeBetweenIncrements = 0.75f;
+    private float timePassed;
+    
+    void Start()
+    {
+        score = 0;
+        timeBetweenIncrements = 0.75f;
+        timePassed = 0f;
+        highscoreText.text = highScore.ToString();
+    }
         
     void Update()
     {
-        if (player != null)
+        if (player ==null) { return; }
+        
+        timePassed += Time.deltaTime;
+        if (timePassed >= timeBetweenIncrements)
         {
-            timePassed += Time.deltaTime;
-            if (timePassed >= timeBetweenIncrements)
-            {
-                score += 1;
-                scoreText.text = score.ToString();
-                timePassed = 0f;
-            }
+            score += 1;
+            scoreText.text = score.ToString();
+            timePassed = 0f;
+
+            if (score <= highScore) { return; }
+            highScore = score;
+            highscoreText.text = highScore.ToString();
         }
     }
 }

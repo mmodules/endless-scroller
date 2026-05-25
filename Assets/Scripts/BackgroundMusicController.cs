@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BackgroundMusicController : MonoBehaviour
 {
-    private static BackgroundMusicController obj;
+    public static BackgroundMusicController obj;
     
     [Header("Audio Settings")]
     private AudioSource audioSource;
@@ -12,6 +12,12 @@ public class BackgroundMusicController : MonoBehaviour
     
     private void Awake()
     {
+        if (obj != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
         obj = this;
         DontDestroyOnLoad(gameObject);
     }
