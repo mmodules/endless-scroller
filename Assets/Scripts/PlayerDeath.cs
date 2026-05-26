@@ -23,6 +23,8 @@ public class PlayerDeath : MonoBehaviour
             GetComponent<Collider2D>().enabled = false;
             GetComponent<PlayerMovement>().enabled = false;
             
+            CameraFollow.followPlayer = false;
+            
             audioSources[1].Play();
 
             StartCoroutine(Wait());
@@ -35,7 +37,7 @@ public class PlayerDeath : MonoBehaviour
     
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene("Game Over");
     }
 }

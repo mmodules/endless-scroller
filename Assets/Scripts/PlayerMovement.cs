@@ -1,73 +1,68 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public float horizontalSpeed = 0.4f;
-    public float verticalSpeed = 3f;
 
-    private float localSpeed = 5f;
-    private float timeElapsed;
-    //private float lastUpdateTime;
-    private float speedupInterval = 0.05f;
-    private bool incrementSpeed = true;
+    private float verticalSpeed = 3f;
 
-    // Update is called once per frame
+    private Camera cam;
+
+    private bool dragging = false;
+
+    private Vector3 previousMouseWorldPos;
+
+    void Start()
+    {
+        cam = Camera.main;
+    }
+
     void Update()
     {
-        
-        KeyboardControls();
-        rb.linearVelocityY = verticalSpeed;
+        HandleMouseInput();
     }
 
-    private void KeyboardControls()
+    void FixedUpdate()
     {
-        if (Keyboard.current.spaceKey.isPressed)
+        float horizontalVelocity = 0f;
+
+        if (dragging)
         {
-            localSpeed = horizontalSpeed * 2;
-        }
-        else
-        {
-            localSpeed = horizontalSpeed;
-        }
-        
-        if (Keyboard.current.aKey.isPressed)
-        {
-            if (incrementSpeed) {rb.linearVelocityX += Math.Clamp(-1 * localSpeed, -5, 5);}
-            incrementSpeed = false;
-            UpdateTime();
-            return;
+            Vector3 currentMouseWorldPos = GetMouseWorldPosition();
+            float deltaX = currentMouseWorldPos.x - previousMouseWorldPos.x;
+            
+            horizontalVelocity = deltaX / Time.fixedDeltaTime;
+            previousMouseWorldPos = currentMouseWorldPos;
         }
 
-        if (Keyboard.current.dKey.isPressed)
-        {
-            if (incrementSpeed) {rb.linearVelocityX += Math.Clamp(1 * localSpeed, -5, 5);}
-            incrementSpeed = false;
-            UpdateTime();
-            return;
-        }
-        
-        rb.linearVelocityX = 0;
+        // Apply movement
+        rb.linearVelocity = new Vector2(horizontalVelocity, verticalSpeed);
     }
 
-    private void UpdateTime()
+    void HandleMouseInput()
     {
-        timeElapsed += Time.deltaTime;
-        if (timeElapsed >= speedupInterval)
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            timeElapsed = 0f;
-            incrementSpeed = true;
+            dragging = true;
+            previousMouseWorldPos = GetMouseWorldPosition();
+        }
+        
+        if (Mouse.current.leftButton.wasReleasedThisFrame)
+        {
+            dragging = false;
         }
     }
 
-    private void MouseControls()
+    Vector3 GetMouseWorldPosition()
     {
-        Vector2 screenPos = Mouse.current.position.ReadValue(); // Screen position
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
-        
-        rb.MovePosition(new Vector2(worldPos.x, rb.position.y + verticalSpeed * Time.fixedDeltaTime));
+        Vector3 mouseScreenPos = Mouse.current.position.ReadValue();
+
+        mouseScreenPos.z = -cam.transform.position.z;
+        Vector3 worldPos = cam.ScreenToWorldPoint(mouseScreenPos);
+        worldPos.z = 0f;
+
+        return worldPos;
     }
 }
