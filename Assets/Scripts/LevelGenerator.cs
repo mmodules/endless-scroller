@@ -71,7 +71,7 @@ public class LevelGenerator : MonoBehaviour
         {
             // offset y by 4 so that it doesnt start right up in your face
             
-            newSegment.transform.position = new Vector3(0, 4, transform.position.z);
+            newSegment.transform.position = new Vector3(0, 6, transform.position.z);
         }
         else
         {
