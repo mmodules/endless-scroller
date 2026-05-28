@@ -4,11 +4,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
 
     private float verticalSpeed = 4f;
-
+    private float homeOffsetY = -2f;
+    private float catchUpForce = 8f;
+    
     private Camera cam;
+    private Transform cameraTransform;
 
     private bool dragging = false;
 
@@ -17,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        cameraTransform = cam.transform;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -33,12 +38,25 @@ public class PlayerMovement : MonoBehaviour
             Vector3 currentMouseWorldPos = GetMouseWorldPosition();
             float deltaX = currentMouseWorldPos.x - previousMouseWorldPos.x;
             
-            horizontalVelocity = deltaX / Time.fixedDeltaTime;
+            horizontalVelocity = Mathf.Clamp(deltaX / Time.fixedDeltaTime, -50f, 50f);
             previousMouseWorldPos = currentMouseWorldPos;
         }
+        
+        // home position
+        float targetY = cameraTransform.position.y + homeOffsetY;
 
-        // Apply movement
-        rb.linearVelocity = new Vector2(horizontalVelocity, verticalSpeed);
+        float distanceBehind = targetY - rb.position.y;
+
+        // move up
+        float verticalVelocity = verticalSpeed;
+
+        // rubber-band upwards if falling behind
+        if (distanceBehind > 0f)
+        {
+            verticalVelocity += distanceBehind * catchUpForce;
+        }
+
+        rb.linearVelocity = new Vector2(horizontalVelocity, verticalVelocity);
     }
 
     void HandleMouseInput()

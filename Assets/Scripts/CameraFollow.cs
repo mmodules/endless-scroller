@@ -1,12 +1,11 @@
-using System;
-using NUnit.Framework.Constraints;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
     public Transform player;
     public float yOffset = 4;
+    
+    [SerializeField] private float scrollSpeed = 4f;
     
     public static bool followPlayer = true;
 
@@ -15,12 +14,11 @@ public class CameraFollow : MonoBehaviour
         followPlayer = true;
     }
    
-    void Update()
+    void LateUpdate()
     {
         if (followPlayer)
         {
-            Debug.Log(transform.position);
-            transform.position = new Vector3(0f, player.position.y + yOffset, transform.position.z);
+            transform.position += Vector3.up * scrollSpeed * Time.deltaTime;
         }
     }
 }
