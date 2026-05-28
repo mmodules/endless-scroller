@@ -6,6 +6,7 @@ public class Score : MonoBehaviour
 {
     public static int highScore;
     public static int score;
+    public static bool firstTimePlaying = true;
     
     public GameObject player;
     public TMP_Text scoreText;

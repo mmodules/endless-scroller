@@ -1,10 +1,14 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
     public List<LevelSegment> segmentPrefabs;
+    public LevelSegment tutorialSegment;
     public Transform player;
+
+    public static bool doTutorial;
 
     public int segmentsAhead = 6;
 
@@ -46,15 +50,27 @@ public class LevelGenerator : MonoBehaviour
 
     void SpawnSegment()
     {
-        int random = Random.Range(0, segmentPrefabs.Count);
-        LevelSegment prefab = segmentPrefabs[random];
-
-        LevelSegment newSegment = Instantiate(prefab);
+        LevelSegment newSegment;
+        LevelSegment prefab;
+        if (Score.firstTimePlaying)
+        {
+            // PLAY TUTORIAL/GUIDE
+            Score.firstTimePlaying = false;
+            prefab = tutorialSegment;
+            doTutorial = true;
+        }
+        else
+        {
+            int random = Random.Range(0, segmentPrefabs.Count);
+            prefab = segmentPrefabs[random];
+        }
+        newSegment = Instantiate(prefab);
         activeSegments.Enqueue(newSegment);
-
+        
         if (lastSegment == null)
         {
             // offset y by 4 so that it doesnt start right up in your face
+            
             newSegment.transform.position = new Vector3(0, 4, transform.position.z);
         }
         else
