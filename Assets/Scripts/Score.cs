@@ -11,7 +11,7 @@ public class Score : MonoBehaviour
     public TMP_Text scoreText;
     public TMP_Text highscoreText;
     
-    public float timeBetweenIncrements = 0.75f;
+    public static float timeBetweenIncrements = 0.75f;
     private float timePassed;
     
     void Start()

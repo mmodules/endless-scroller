@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
 
-    private float verticalSpeed = 3f;
+    private float verticalSpeed = 4f;
 
     private Camera cam;
 

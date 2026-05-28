@@ -339,7 +339,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -461,17 +461,26 @@ MonoBehaviour:
   - {fileID: 5152110225625581829, guid: d421fbee354d71444bb7366b0c79b785, type: 3}
   - {fileID: 5152110225625581829, guid: 30a84472cde72e547917643aff5a54d2, type: 3}
   - {fileID: 8690535065890084239, guid: 89c9ad90321db4444a6d1bbed4f448c9, type: 3}
-  - {fileID: 5152110225625581829, guid: 0ffcd35313352274eaa5875421334d50, type: 3}
+  - {fileID: 5152110225625581829, guid: 323e3823ea60e4d4ab961728420d00c0, type: 3}
   - {fileID: 8690535065890084239, guid: c72fe26d9e33828418d454ec51b88d76, type: 3}
   - {fileID: 8690535065890084239, guid: 03b4d6de3d4aeca42bc6ed3cd783226c, type: 3}
-  - {fileID: 5152110225625581829, guid: 17e04b52bd4467b499b7cf9267cac6d7, type: 3}
+  - {fileID: 5152110225625581829, guid: c682b3083e757894f8b80393045e9909, type: 3}
+  - {fileID: 5152110225625581829, guid: 565b622fbf1dddc449d42af07cef3a99, type: 3}
+  - {fileID: 5152110225625581829, guid: ae5a72aacf290c249baa90ab28846e96, type: 3}
+  - {fileID: 8690535065890084239, guid: 60533fbc417a1f84db2b4c65e31cceac, type: 3}
+  - {fileID: 8690535065890084239, guid: 6754f4de15f624e4c9ebad39d57ea019, type: 3}
   - {fileID: 3895810377280649246, guid: 7e365c889c8bf9a4f9e495244882f35a, type: 3}
   - {fileID: 3895810377280649246, guid: 5bcfac949acf3d442852bd8b7bc1c84e, type: 3}
   - {fileID: 5152110225625581829, guid: 5198e65765068374a82e30b1fc5e7a8c, type: 3}
+  - {fileID: 5152110225625581829, guid: 0ffcd35313352274eaa5875421334d50, type: 3}
+  - {fileID: 5152110225625581829, guid: 17e04b52bd4467b499b7cf9267cac6d7, type: 3}
   - {fileID: 3838880249818985447, guid: 5130c6cdac3660541a467c519e4a340d, type: 3}
   - {fileID: 3838880249818985447, guid: 890e6e96dc060744c827ca1b2e9f68e3, type: 3}
   - {fileID: 3838880249818985447, guid: f17800b77e7fa9e49a4a71626eed6111, type: 3}
   - {fileID: 3838880249818985447, guid: c3e83c3053894d348bf9b53e6cced141, type: 3}
+  - {fileID: 3838880249818985447, guid: 1ab1e8723274dbf4d8ec030b4f6276b8, type: 3}
+  - {fileID: 3838880249818985447, guid: 280daba47d6eefb47a618e64785245e1, type: 3}
+  - {fileID: 3838880249818985447, guid: 17e4378351a3eda4a80f30a994b15c11, type: 3}
   - {fileID: 3838880249818985447, guid: 2126b48c3e7d4994093f7e0cf4ccffdc, type: 3}
   - {fileID: 3838880249818985447, guid: fbe6208d0e49ede419e079636261b999, type: 3}
   - {fileID: 3838880249818985447, guid: 29a1b8f6c55e6a54e848cb39cb56a1e5, type: 3}
@@ -742,8 +751,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   rb: {fileID: 1497200702}
-  horizontalSpeed: 1
-  verticalSpeed: 3
 --- !u!114 &1497200704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,7 +765,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeath
   mainCamera: {fileID: 519420031}
   explosionObject: {fileID: 2506408060365808162, guid: a04f468fcf28ae7419877b8dfa57e2ff, type: 3}
-  scoreObject: {fileID: 1638462496}
   audioSources:
   - {fileID: 1497200706}
   - {fileID: 1497200707}
@@ -1039,7 +1045,6 @@ MonoBehaviour:
   player: {fileID: 1497200699}
   scoreText: {fileID: 395850678}
   highscoreText: {fileID: 2102465952}
-  timeBetweenIncrements: 0.75
 --- !u!1 &1694188372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,8 +1131,8 @@ Transform:
   m_GameObject: {fileID: 1694188372}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0515, y: 0.0020001, z: 0}
-  m_LocalScale: {x: 7.492863, y: 16.018703, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10, y: 16.018703, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

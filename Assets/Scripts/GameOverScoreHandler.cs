@@ -8,7 +8,7 @@ public class GameOverScoreHandler : MonoBehaviour
     
     void Start()
     {
-        highScoreText.text = Score.highScore.ToString() + " best";
-        scoreText.text = Score.score.ToString() + " score";
+        highScoreText.text = Score.highScore + " best";
+        scoreText.text = Score.score + " score";
     }
 }
